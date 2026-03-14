@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel — Horizont</title>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0C1117;--surface:#151E26;--card:#1E2937;
+  --ink:#E5E9F0;--ink-soft:#B0C0D0;
+  --border:#2A3745;--border-light:#3A4755;
+  --accent:#D4AF37;--accent2:#B4941F;
+  --accent-light:#2A2A1A;
+  --accent-glow:rgba(212,175,55,0.3);
+  --muted:#7A8A9A;--light:#9AABBB;
+}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M0 30 L60 30 M30 0 L30 60" stroke="%23D4AF37" stroke-width="0.3" opacity="0.05"/></svg>');pointer-events:none;z-index:-1}
+header{background:rgba(12,17,23,0.98);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.hdr-inner{max-width:1400px;margin:0 auto;padding:0 50px;height:90px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo-name{font-family:'Prata',serif;font-size:30px;font-weight:400;color:var(--ink);letter-spacing:-0.5px;text-transform:uppercase}
+.logo-name span{color:var(--accent)}
+nav a{padding:10px 22px;color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+nav a:hover{color:var(--accent)}
+nav a i{margin-right:6px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--muted)}
+.mobile-nav{display:none;background:var(--surface);border-top:1px solid var(--border);padding:20px 50px;flex-direction:column}
+.mobile-nav a{display:block;padding:16px 0;color:var(--ink-soft);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav.open{display:flex}
+
+/* PREMIUM HERO */
+.post-hero{background:linear-gradient(to bottom, var(--surface), var(--bg));border-bottom:1px solid var(--border);position:relative}
+.post-hero::before{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, var(--accent), transparent)}
+.ph-inner{max-width:1400px;margin:0 auto;padding:80px 50px;display:grid;grid-template-columns:1.3fr 0.7fr;gap:80px;align-items:center}
+.ph-breadcrumb{font-size:12px;color:var(--muted);margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap}
+.ph-breadcrumb a{color:var(--muted);text-decoration:none;transition:color .3s}
+.ph-breadcrumb a:hover{color:var(--accent)}
+.ph-cat{display:inline-block;background:transparent;color:var(--accent);border:2px solid var(--accent);padding:8px 22px;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:25px}
+.ph-title{font-family:'Prata',serif;font-size:62px;font-weight:400;color:var(--ink);line-height:.95;margin-bottom:30px;letter-spacing:-1.5px;text-transform:uppercase}
+.ph-meta{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--muted);padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap}
+.ph-av{width:52px;height:52px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent);transform:rotate(45deg);transition:transform .3s}
+.ph-av i{transform:rotate(-45deg)}
+.ph-av:hover{transform:rotate(90deg)}
+.ph-meta strong{color:var(--accent);font-weight:600}
+.ph-meta i{margin-right:6px;color:var(--accent)}
+.ph-visual{background:linear-gradient(145deg, var(--surface), var(--bg));border:1px solid var(--border);min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;position:relative;padding:50px}
+.ph-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, var(--accent-glow) 0%, transparent 70%);opacity:0.2}
+.ph-vis-icon{font-size:120px;color:var(--accent);opacity:.2;position:relative}
+.ph-vis-label{font-size:15px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--accent2);margin-top:20px;position:relative}
+.ph-vis-line{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg, transparent, var(--accent), transparent)}
+
+/* LAYOUT - PREMIUM */
+.layout{max-width:1300px;margin:70px auto;padding:0 50px;display:grid;grid-template-columns:1fr 350px;gap:70px}
+.main-col{background:var(--card);border:1px solid var(--border);padding:70px;position:relative}
+.main-col::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, var(--accent-glow) 0%, transparent 70%);opacity:0.05}
+.back-btn{display:inline-flex;align-items:center;gap:12px;background:transparent;border:1px solid var(--border);color:var(--ink-soft);text-decoration:none;font-size:12px;font-weight:500;padding:14px 28px;margin-bottom:60px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden}
+.back-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);transition:left .3s;z-index:-1}
+.back-btn:hover{color:var(--bg);border-color:var(--accent)}
+.back-btn:hover::before{left:0}
+.back-btn i{font-size:13px}
+.article-body{font-size:18px;line-height:1.9;color:var(--ink-soft);font-weight:300}
+.article-body p{margin-bottom:32px}
+.article-body h2{font-family:'Prata',serif;font-size:36px;font-weight:400;color:var(--ink);margin:70px 0 28px;letter-spacing:-0.5px;border-bottom:1px solid var(--border);padding-bottom:20px;text-transform:uppercase}
+.article-body h3{font-family:'Prata',serif;font-size:26px;font-weight:400;color:var(--ink);margin:45px 0 20px}
+.article-body a{color:var(--accent);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.3);transition:all .3s}
+.article-body a:hover{color:var(--ink);border-color:var(--ink)}
+.article-body ul,.article-body ol{padding-left:36px;margin-bottom:30px}
+.article-body li{margin-bottom:12px;line-height:1.8}
+.article-body strong{font-weight:600;color:var(--ink)}
+blockquote{background:var(--surface);border-left:4px solid var(--accent);padding:36px 42px;margin:56px 0;position:relative;overflow:hidden}
+blockquote::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, var(--accent-glow) 0%, transparent 70%);opacity:0.1}
+blockquote p{font-family:'Prata',serif;font-size:24px;color:var(--ink);line-height:1.5;font-style:italic;margin-bottom:0}
+
+/* SIDEBAR - PREMIUM */
+.sidebar{display:flex;flex-direction:column;gap:30px}
+.widget{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden}
+.widget::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, var(--accent-glow) 0%, transparent 70%);opacity:0.05}
+.wh{padding:22px 25px;border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;gap:14px}
+.wh i{color:var(--accent);width:24px;font-size:20px}
+.wh-title{font-family:'Prata',serif;font-size:22px;font-weight:400;color:var(--ink)}
+.wb{padding:25px}
+.wi{padding:18px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .3s}
+.wi:last-child{border-bottom:none;padding-bottom:0}
+.wi:hover{padding-left:10px;background:linear-gradient(90deg, var(--surface), transparent)}
+.wi-cat{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.wi-title{font-family:'Prata',serif;font-size:18px;font-weight:400;color:var(--ink);line-height:1.2;text-decoration:none;display:block;margin-bottom:6px}
+.wi-title:hover{color:var(--accent)}
+.wi-meta{font-size:11px;color:var(--muted)}
+.wi-meta i{margin-right:4px;font-size:10px}
+.about-box{background:linear-gradient(145deg, var(--card), var(--surface));border:1px solid var(--border);padding:35px;text-align:center;position:relative;overflow:hidden}
+.about-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, var(--accent-glow) 0%, transparent 70%);opacity:0.1}
+.ab-title{font-family:'Prata',serif;font-size:26px;font-weight:400;color:var(--ink);margin-bottom:18px;letter-spacing:-0.3px;text-transform:uppercase}
+.ab-text{font-size:14px;color:var(--ink-soft);line-height:1.8;margin-bottom:24px}
+.ab-link{color:var(--accent);font-weight:600;font-size:13px;text-decoration:none;text-transform:uppercase;letter-spacing:2px;position:relative}
+.ab-link::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.ab-link:hover::after{width:100%}
+.ab-link i{margin-left:8px;transition:margin .3s}
+.ab-link:hover i{margin-left:12px}
+.not-found{text-align:center;padding:120px;color:var(--muted);grid-column:1/-1}
+footer{background:var(--surface);margin-top:80px;border-top:1px solid var(--border);text-align:center;padding:30px;font-size:13px;color:var(--muted);position:relative}
+footer::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, var(--accent), transparent)}
+footer a{color:var(--muted);text-decoration:none;margin:0 14px;transition:color .3s}
+footer a:hover{color:var(--accent)}
+.fl{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:10px}
+.fl-icon{width:48px;height:48px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:20px;transform:rotate(45deg)}
+.fl-icon i{transform:rotate(-45deg)}
+.fl-name{font-family:'Prata',serif;font-size:30px;color:var(--ink);font-weight:400;text-transform:uppercase}
+.fl-name span{color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .layout{grid-template-columns:1fr}.sidebar{display:none}.ph-inner{grid-template-columns:1fr;gap:32px}.ph-visual{display:none}
+}
+@media(max-width:768px){
+  .ph-inner{padding:50px 30px}.ph-title{font-size:42px}.main-col{padding:40px 30px}.hdr-inner nav{display:none}.hamburger{display:flex}.hdr-inner{padding:0 30px}
+}
+@media(max-width:480px){
+  .ph-title{font-size:32px}.main-col{padding:30px 20px}.article-body{font-size:16px}.layout{padding:0 20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr-inner">
+    <a href="index.html" class="logo"><span class="logo-name">Hori<span>zont</span></span></a>
+    <nav>
+      <a href="index.html"><i class="fas fa-arrow-left"></i> START</a>
+      <a href="index.html">POLITIK</a>
+      <a href="index.html">KULTUR</a>
+      <a href="index.html">WISSENSCHAFT</a>
+    </nav>
+    <button class="hamburger" onclick="document.getElementById('mn').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mn">
+    <a href="index.html"><i class="fas fa-arrow-left"></i> ALLE ARTIKEL</a>
+    <a href="index.html">POLITIK</a>
+    <a href="index.html">KULTUR</a>
+    <a href="index.html">WISSENSCHAFT</a>
+    <a href="index.html">GESELLSCHAFT</a>
+  </div>
+</header>
+
+<div id="post-hero" class="post-hero" style="display:none">
+  <div class="ph-inner">
+    <div>
+      <div class="ph-breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i> START</a>
+        <span>/</span>
+        <span id="ph-cat-bc">ALLGEMEIN</span>
+      </div>
+      <div class="ph-cat" id="ph-cat">ALLGEMEIN</div>
+      <div class="ph-title" id="ph-title"></div>
+      <div class="ph-meta">
+        <div class="ph-av" id="ph-av"><i class="fas fa-mountain-sun"></i></div>
+        <strong id="ph-author">REDAKTION</strong>
+        <span>·</span>
+        <span><i class="fas fa-calendar-alt"></i> <span id="ph-date"></span></span>
+        <span>·</span>
+        <span><i class="fas fa-clock"></i> <span id="ph-read">5 MIN.</span></span>
+      </div>
+    </div>
+    <div class="ph-visual">
+      <div class="ph-vis-icon"><i class="fas fa-eye"></i></div>
+      <div class="ph-vis-label" id="ph-vis-label">HORIZONT</div>
+      <div class="ph-vis-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="main-col">
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> ALLE BEITRÄGE</a>
+    <div id="article-body" class="article-body"></div>
+    <div id="not-found" class="not-found" style="display:none"><h2 style="font-family:'Prata',serif;font-size:40px;font-weight:400;text-transform:uppercase">ARTIKEL NICHT GEFUNDEN.</h2></div>
+  </div>
+  <aside class="sidebar">
+    <div class="about-box">
+      <div class="ab-title">HORIZONT</div>
+      <div class="ab-text">Das Magazin für Weitblick, Perspektiven und neue Horizonte.</div>
+      <a href="#" class="ab-link">MEHR <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="widget">
+      <div class="wh"><i class="fas fa-clock"></i><div class="wh-title">WEITERE BEITRÄGE</div></div>
+      <div class="wb" id="recent-posts"></div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="fl"><span class="fl-icon"><i class="fas fa-mountain-sun"></i></span><span class="fl-name">Hori<span>zont</span></span></div>
+  <p>&copy; 2026 HORIZONT &nbsp;|&nbsp;<a href="#">IMPRESSUM</a>&nbsp;|&nbsp;<a href="#">DATENSCHUTZ</a></p>
+</footer>
+
+<script>
+// Constants
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96';
+const SITE_NAME = 'horizont';
+const RAW_URL = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+async function loadPost() {
+  try {
+    console.log('Loading post with ID:', id);
+    
+    const response = await fetch(RAW_URL);
+    const allPosts = await response.json();
+    console.log('Total posts in Gist:', allPosts.length);
+    
+    // Filter posts by site name
+    const sitePosts = Array.isArray(allPosts) 
+      ? allPosts.filter(p => p.site === SITE_NAME)
+      : [];
+    console.log(`Posts for site "${SITE_NAME}":`, sitePosts.length);
+    
+    const post = sitePosts.find(p => p.id == id);
+    
+    if (post) {
+      console.log('Post found:', post.title);
+      document.title = post.title + ' — Horizont';
+      document.getElementById('ph-title').textContent = post.title;
+      document.getElementById('ph-cat').textContent = post.category || 'ALLGEMEIN';
+      document.getElementById('ph-cat-bc').textContent = post.category || 'ALLGEMEIN';
+      document.getElementById('ph-vis-label').textContent = post.category || 'HORIZONT';
+      document.getElementById('ph-author').textContent = post.author || 'REDAKTION';
+      document.getElementById('ph-av').innerHTML = '<i class="fas fa-mountain-sun"></i>';
+      document.getElementById('ph-date').textContent = new Date(post.date).toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'});
+      
+      const w = post.content.replace(/<[^>]+>/g, '').split(' ').length;
+      document.getElementById('ph-read').textContent = Math.max(1, Math.round(w / 200)) + ' MIN.';
+      document.getElementById('article-body').innerHTML = post.content;
+      document.getElementById('post-hero').style.display = 'block';
+      
+      // Recent posts (excluding current)
+      const rp = document.getElementById('recent-posts');
+      rp.innerHTML = '';
+      sitePosts.slice().reverse().slice(0, 6).forEach(p => {
+        if (p.id == id) return;
+        rp.innerHTML += `<div class="wi" onclick="location.href='post.html?id=${p.id}'">
+          <div class="wi-cat">${p.category || 'ALLGEMEIN'}</div>
+          <a class="wi-title" href="post.html?id=${p.id}">${p.title}</a>
+          <div class="wi-meta"><i class="fas fa-user"></i> ${p.author || 'REDAKTION'} · <i class="fas fa-calendar-alt"></i> ${new Date(p.date).toLocaleDateString('de-DE')}</div>
+        </div>`;
+      });
+    } else {
+      console.log('Post not found. Available IDs:', sitePosts.map(p => p.id));
+      document.getElementById('not-found').style.display = 'block';
+    }
+  } catch (e) {
+    console.error('Error loading post:', e);
+    document.getElementById('not-found').style.display = 'block';
+  }
+}
+
+// Load the post
+loadPost();
+</script>
+</body>
+</html>
